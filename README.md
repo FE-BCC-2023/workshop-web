@@ -8,7 +8,9 @@ Nahh, untuk semakin memperkuat pondasi pemahaman teman - teman di Front End, mak
 
 - Install [Node JS](https://nodejs.org/en/) terlebih dahulu. Disarankan install versi LTS
 - Cek apakah Node JS sudah terinstall menggunakan command berikut
-~~~bash node -v~~~
+~~~bash 
+node -v
+~~~
 
 - Download repo ini, kemudian extract di folder favorit kalian
 
