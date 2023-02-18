@@ -1,10 +1,6 @@
 import styled from "styled-components";
 import { BsTwitter } from "react-icons/bs";
 import { Button, List, Stack, Typography } from "@mui/material";
-import { useContext } from "react";
-
-import { UserContext } from "../../context/AuthContext";
-import { logout } from "../../../api/services/logout";
 
 const TopNav = styled.nav`
     padding: 20px;
@@ -30,24 +26,6 @@ export const Container = styled.div`
 `
 
 const TopAppBar = () => {
-    const { user } = useContext(UserContext);
-
-    const handleLogout = async () => {
-        try {
-            const result = await logout(user.token);
-
-            console.log(result);
-
-            window.localStorage.removeItem('token');
-
-            setTimeout(() => {
-                window.location.reload()
-            }, 2000);
-        } catch (error) {
-            console.error(error)
-        }
-    }
-
     return (
         <TopNav>
             <Container>
@@ -58,16 +36,6 @@ const TopAppBar = () => {
                 <Button href="/" variant="outlined">
                     <List>Home</List>
                 </Button>
-                {
-                    user ?
-                        <Button onClick={handleLogout} variant="outlined" sx={{ marginLeft: '20px' }}>
-                            <List>Logout</List>
-                        </Button>
-                        :
-                        <Button href="/login" variant="outlined" sx={{ marginLeft: '20px' }}>
-                            <List>Login</List>
-                        </Button>
-                }
             </Stack>
         </TopNav>
     );
