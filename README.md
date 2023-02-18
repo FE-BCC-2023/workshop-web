@@ -4,7 +4,13 @@ Selamat! Anda dinyatakan diterima dalam proses Internship BCC 2023 di departemen
 
 Nahh, untuk semakin memperkuat pondasi pemahaman teman - teman di Front End, maka inilah starter pack project untuk workshop nantinya. Semoga teman - teman makin semangat yaa 😎
 
-## Get Started 🚀  
+## Get Started 🚀
+
+- Install [Node JS](https://nodejs.org/en/) terlebih dahulu. Disarankan install versi LTS
+- Cek apakah Node JS sudah terinstall menggunakan command berikut
+~~~bash 
+node -v
+~~~
 
 - Download repo ini, kemudian extract di folder favorit kalian
 
