@@ -33,7 +33,7 @@ const TopAppBar = () => {
                 <Typography fontSize={20} marginLeft={3} fontWeight="600">Twitter Clone</Typography>
             </Container>
             <Stack direction="row" justifyContent="space-between">
-                <Button href="/" variant="outlined">
+                <Button href="/" variant={window.location.pathname === '/' ? 'contained' : 'outlined'}>
                     <List>Home</List>
                 </Button>
             </Stack>

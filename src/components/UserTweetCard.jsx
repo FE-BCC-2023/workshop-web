@@ -12,13 +12,13 @@ const Form = styled.form`
     margin-bottom: 10px
 `
 
-const UserTweetCard = () => {
+const UserTweetCard = ({ title, description }) => {
     return (
         <Form>
             <>
-                <Typography variant="h5" fontWeight={600}>judul</Typography>
+                <Typography variant="h5" fontWeight={600}>{title}</Typography>
                 <Typography sx={{ marginTop: '20px' }}>
-                    deskripsi
+                    {description}
                 </Typography>
                 <Button
                     variant="contained"
