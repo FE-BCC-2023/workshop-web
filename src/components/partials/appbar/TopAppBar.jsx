@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { BsTwitter } from "react-icons/bs";
 import { Button, List, Stack, Typography } from "@mui/material";
+import axios from "axios";
 
 const TopNav = styled.nav`
     padding: 20px;
@@ -26,6 +27,27 @@ export const Container = styled.div`
 `
 
 const TopAppBar = () => {
+    const handleLogout = () => {
+        axios.post('https://tweet-api.up.railway.app/api/v1/auth/logout', {
+        }, {
+            headers: {
+                Authorization: `Bearer ${window.localStorage.getItem('token')}`
+            }
+        })
+            .then((response) => {
+                console.log(response)
+
+                window.localStorage.removeItem('token')
+
+                setTimeout(() => {
+                    window.location.reload()
+                }, 1000)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
     return (
         <TopNav>
             <Container>
@@ -36,6 +58,12 @@ const TopAppBar = () => {
                 <Button href="/" variant={window.location.pathname === '/' ? 'contained' : 'outlined'}>
                     <List>Home</List>
                 </Button>
+                {
+                    window.location.pathname === '/' &&
+                    <Button onClick={handleLogout} variant="outlined" sx={{ marginLeft: '20px' }}>
+                        <List>Logout</List>
+                    </Button>
+                }
             </Stack>
         </TopNav>
     );

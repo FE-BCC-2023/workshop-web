@@ -1,5 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
+import AuthRoute from './components/routes/AuthRoute'
+import ProtectedRoute from './components/routes/ProtectedRoute'
 
 // pages
 import Home from './pages/Home'
@@ -10,9 +12,13 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/signup' element={<Signup />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path='/' element={<Home />} />
+        </Route>
+        <Route element={<AuthRoute/>}>
+          <Route path='/login' element={<Login />} />
+          <Route path='/signup' element={<Signup />} />
+        </Route>
       </Routes>
     </div>
   )

@@ -1,4 +1,7 @@
 import { Typography, TextField, Button, Link } from "@mui/material";
+import axios from "axios";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components"
 
 const Form = styled.form`
@@ -19,8 +22,31 @@ const Divs = styled.div`
 `
 
 const RegisterForm = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+
+    const handleRegister = (e) => {
+        e.preventDefault()
+
+        axios.post('https://tweet-api.up.railway.app/api/v1/auth/register', {
+            email: email,
+            password: password
+        })
+        .then((apapun) => {
+            console.log(apapun);
+
+            setTimeout(() => {
+                navigate('/login')
+            }, 1000)
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
+
     return(
-        <Form>
+        <Form onSubmit={handleRegister}>
             <Typography
                 variant="h5"
                 sx={{ fontWeight: '600', textTransform: 'capitalize' }}>
@@ -33,15 +59,18 @@ const RegisterForm = () => {
                     label="Email"
                     variant="outlined"
                     fullWidth
+                    onChange={(e) => { setEmail(e.target.value) }}
                 />
                 <TextField
                     sx={{ marginTop: '20px' }}
                     id="outlined-basic"
                     label="Password"
+                    type="password"
                     variant="outlined"
                     fullWidth
+                    onChange={(e) => { setPassword(e.target.value) }}
                 />
-                <Button variant="contained" sx={{ marginTop: '20px' }}>Submit</Button>
+                <Button type="submit" variant="contained" sx={{ marginTop: '20px' }}>Submit</Button>
                 <Typography sx={{ marginTop: '10px' }}>Dah ada akun? <Link href="/login">Klik Disini</Link></Typography>
             </Divs>
         </Form>
